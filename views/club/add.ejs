@@ -1,0 +1,69 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Form đăng ký</strong>
+                </div>
+                <div class="card-body card-block">
+                    <form id="register" action="/club/add/<%=idSeason%>" method="post" class="form-horizontal">
+                        <% if (success) { %>
+                            <div class="alert alert-success" role="alert">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Success!</strong>
+                                <%= messagesSuccess %>
+                            </div>
+                        <% } %>
+                        <div class="row form-group">
+                            <div class="col col-md-3 "><label for="tendoibong" class=" form-control-label ">Tên đội
+                                    bóng</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="tendoibong" name="tendoibong" placeholder="Tên đội bóng"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3 "><label for="svd" class=" form-control-label ">Sân vận
+                                    động</label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="svd" name="svd" placeholder="Sân vận động" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+
+                            <div class="col col-md-3 "><label for="hlv" class=" form-control-label ">Huấn luyện
+                                    viên </label>
+                            </div>
+                            <div class="col-12 col-md-9">
+                                <input type="text" id="hlv" name="hlv" placeholder="Huấn luyện viên"
+                                    class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="row form-group">
+                            <div class="col col-md-3"><label for="logo" class=" form-control-label">Logo</label></div>
+                            <div class="col-12 col-md-9">
+                                <div class="file-loading">
+                                    <input value=null id="logo" name="logo" type="file" multiple>
+                                </div>
+                            </div>
+                            <input type="hidden" id="imgPath" name="imgPath" value="">
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <button form="register" type="submit" class="btn btn-primary btn-sm">
+                        <i class="fa fa-check"></i> Đăng ký
+                    </button>
+                    <button form="register"  type="reset" class="btn btn-danger btn-sm">
+                        <i class="fa fa-ban"> </i> Hủy đăng ký
+                    </button>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

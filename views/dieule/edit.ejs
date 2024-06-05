@@ -1,0 +1,205 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+            <span class="badge badge-pill badge-success">Mùa giải</span>
+            <% if (edit=="true") { %>
+            <a <i href="/dieule/info/<%=quydinh.idMuaGiai%>&false" class="fa fa-ban close "></i> Tắt chỉnh sửa </a>
+            <% } else { %>
+            <a <i href="/dieule/info/<%=quydinh.idMuaGiai%>&true" class="fa fa-pen close" style="margin-right: 30px">
+                Chỉnh sửa </i></a>
+            <%}%>
+                
+            </div>
+        </div>
+    </div>
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-2">
+        </div>
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <strong>Bảng thông số</strong>
+                </div>
+                
+                <div class="card-body card-block">
+                    <form action="/dieule/update/<%=idSeason%>" method="post" class="form-horizontal" id="frmDieule">
+
+                        <div class="row form-group">
+
+                            <div class="col col-md-4 "><label for="diemthang" class=" form-control-label ">Điểm số
+                                    thắng</label>
+                            </div>
+                            <div class="col-12 col-md-2">
+                                <input type="number" name="diemthang" id="diemthang"
+                                    class="form-control-sm form-control" value="<%= quydinh.diemSoThang %>"
+            <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+        <div class="col col-md-4 "><label for="diemhoa" class=" form-control-label ">Điểm số
+                hòa</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="diemhoa" id="diemhoa" class="form-control-sm form-control"
+                value="<%= quydinh.diemSoHoa %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+
+    </div>
+
+    
+    <div class="row form-group">
+        <div class="col col-md-4 "><label for="diemthua" class=" form-control-label ">Điểm số
+                thua</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="diemthua" id="diemthua" class="form-control-sm form-control"
+                value="<%= quydinh.diemSoThua %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+        <div class="col col-md-4 "><label for="sodoixuonghang" class=" form-control-label ">Số đội
+                xuống hạng</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="sodoixuonghang" id="sodoixuonghang" class="form-control-sm form-control"
+                value="<%= quydinh.soDoiXuongHang %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+        
+        
+    </div>
+
+    <div class="row form-group">
+
+        <div class="col col-md-4 "><label for="soDoiThamDu" class=" form-control-label ">Số đội tham dự</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" min="2" step="2" name="soDoiThamDu" id="soDoiThamDu" class="form-control-sm form-control"
+                value="<%= quydinh.soDoiThamDu %>" <% if (edit=="false") { %> disabled <% } %>>
+                <!-- <input type="text" name="myinput" id="myinput" onkeyup="checkmyinput()"> -->
+        </div>
+    </div>
+
+    <!-- <div class="row form-group">
+
+        <div class="col col-md-4 "><label for="sodoiduC1" class=" form-control-label ">Số đội dự
+                C1</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="sodoiduC1" id="sodoiduC1" class="form-control-sm form-control"
+                value="<%= quydinh.soDoiDuC1 %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+        <div class="col col-md-4 "><label for="sodoiduC2" class=" form-control-label ">Số đội dự
+                C2</label>
+        </div>
+
+        <div class="col-12 col-md-2">
+            <input type="number" name="sodoiduC2" id="sodoiduC2" class="form-control-sm form-control"
+                value="<%= quydinh.soDoiDuC2 %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+    </div> -->
+
+    <div class="row form-group">
+        <div class="col col-md-4 ">
+            <label for="ngoaibinhMax" class=" form-control-label ">Số cầu
+                thủ ngoại tối đa</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="ngoaibinhMax" id="ngoaibinhMax" class="form-control-sm form-control"
+                value="<%= quydinh.soNgoaiBinhMax %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+        <div class="col col-md-4 "><label for="bugioMax" class=" form-control-label ">Số phút
+                bù giờ tối đa</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="bugioMax" id="bugioMax" class="form-control-sm form-control"
+                value="<%= quydinh.soPhutBuGioMax %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col col-md-2"><label for="#" class=" form-control-label">Tuổi cầu
+                thủ</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="tuoiMin" id="tuoiMin" class="form-control-sm form-control"
+                value="<%= quydinh.tuoiMin %>" <% if (edit=="false") { %> disabled <% } %>>
+
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="tuoiMax" id="tuoiMax" class="form-control-sm form-control"
+                value="<%= quydinh.tuoiMax %>" <% if (edit=="false") { %> disabled <% } %>>
+        </div>
+
+
+        <div class="col col-md-2"><label for="#" class=" form-control-label">Số cầu
+                thủ</label>
+        </div>
+        <div class="col-12 col-md-2">
+            <input type="number" name="cauthuMin" id="cauthuMin" class="form-control-sm form-control"
+                value="<%= quydinh.soCauThuMin %>" <% if (edit=="false") { %> disabled <% } %>>
+            </select>
+        </div>
+
+        <div class="col-12 col-md-2">
+            <input type="number" name="cauthuMax" id="cauthuMax" class="form-control-sm form-control"
+                value="<%= quydinh.soCauThuMax %>" <% if (edit=="false") { %> disabled <% } %>>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col col-md-4 "><label for="#" class=" form-control-label ">Thứ tự ưu
+                tiên</label>
+        </div>
+        <div class="col-12 col-md-8">
+            <select id="thutu" name="thutu" class="form-control" required="required"
+                <% if (edit=="false") { %> disabled <% } %>>
+                <option value="1" <% if(quydinh.thuTuUuTien === 1) {%> selected <%} %>>Điểm - Hệ số - Bàn thắng</option>
+                <option value="2" <% if(quydinh.thuTuUuTien === 2) {%> selected <%} %>>Điểm - Bàn thắng - Hệ số</option>
+                <option value="3" <% if(quydinh.thuTuUuTien === 3) {%> selected <%} %>>Hệ số - Điểm - Bàn thắng</option>
+                <option value="4" <% if(quydinh.thuTuUuTien === 4) {%> selected <%} %>>Hệ số - Bàn thắng - Điểm</option>
+                <option value="5" <% if(quydinh.thuTuUuTien === 5) {%> selected <%} %>>Bàn thắng - Điểm - Hệ số</option>
+                <option value="6" <% if(quydinh.thuTuUuTien === 6) {%> selected <%} %>>Bàn thắng - Hệ số - Điểm </option>
+            </select>
+        </div>
+    </div>
+
+
+    </form>
+</div>
+<div class="card-footer">
+    <% if(edit=="true") { %>
+    <button type="submit" class="btn btn-primary btn-sm" onclick="javascript: jQuery('#frmDieule').submit();">
+        <i class="fa fa-edit"></i> Cập nhật
+    </button>
+    <button type="reset" class="btn btn-danger btn-sm" onclick="javascript: jQuery('#frmDieule')[0].reset();" >
+        <i class="fa fa-ban"></i> Mặc định
+    </button>
+    <%}%>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    function checkmyinput () {
+    // Get inputfield
+    var inputfield = document.getElementById("myinput");
+
+    // Get value from inputfield
+    var inputval = inputfield.value;
+
+    // Remove non numeric input
+    var numeric = inputval.replace(/[^0-9]+/,"");
+
+    // Check if input is numeric and even, if not empty field
+    if (numeric.length != inputval.length || numeric%2 != 0) {
+        inputfield.value = '';
+    }
+}
+</script>

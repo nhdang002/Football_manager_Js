@@ -1,0 +1,133 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="alert  alert-success alert-dismissible fade show" role="alert">
+            <span class="badge badge-pill badge-success">Mùa giải</span>
+
+            <% if (edit=="true") { %>
+                <% if( calendar ){%>
+                <form id="updateCalendar" action="/season/info/updateCalendar/<%= seasonInfo.idMuaGiai%>" method="post">
+                    <button type="submit" form="updateCalendar" class="btn btn-primary btn-sm">
+                        <i class="fa fa-calendar"></i> Tạo lịch thi đấu mới
+                    </button>
+                    </form>
+                    <% } else { %>
+                        <button disable type="submit" form="updateCalendar" class="btn btn-primary btn-sm">
+                                <i class="fa fa-calendar"></i> Số đội cần đúng để tạo lịch
+                                <%}%>
+            <a <i href="/season/info/<%=seasonInfo.idMuaGiai%>&false" class="fa fa-ban close "></i> Tắt chỉnh sửa </a>
+            <% } else { %>
+            <a <i href="/season/info/<%=seasonInfo.idMuaGiai%>&true" class="fa fa-pen close" style="margin-right: 30px">
+                Chỉnh sửa </i></a>
+            <%}%>
+            
+        </div>
+    </div>
+</div>
+
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-9">
+            <div class="card">
+                
+                <div class="card-header">
+                    <strong>Hồ sơ giải đấu</strong>
+                </div>
+                
+                <div class="card-body card-block">
+                    <form id="registerForm" action="/season/info/update/<%= seasonInfo.idMuaGiai%>" method="post"
+            class="form-horizontal">
+
+            <div class="row form-group">
+                <div class="col-12 col-md-12">
+                    <label for="tenMuaGiai" class=" form-control-label ">
+                        Tên mùa giải
+                    </label>
+                    <input type="text" id="tenMuaGiai" name="tenMuaGiai" class="form-control"
+                        value="<%= seasonInfo.tenMuaGiai %>" required="required" <% if (edit=="false") { %> disabled
+                        <% } %>>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="dateStart">Ngày bắt đầu</label>
+                <input type="text" class="form-control" id="dateStart" name="dateStart"
+                    value="<%= seasonInfo.ngayBatDau%>" <% if (edit=="false") { %> disabled <% } %>>
+            </div>
+            <div class="form-group">
+                <label for="dateEnd">Ngày kết thúc</label>
+                <input type="text" class="form-control" id="dateEnd" name="dateEnd" value="<%= seasonInfo.ngayKetThuc%>"
+                    <% if (edit=="false") { %> disabled <% } %>>
+            </div>
+            <div class="row form-group">
+
+                <div class="col-12 col-md-12">
+                    <label for="club" class=" form-control-label ">Đội bóng tham dự</label>
+
+                    <select name="club" id="club" data-placeholder="Chọn đội bóng..." multiple class="standardSelect"
+                    <% if (edit=="false") { %> disabled <% } %> >
+                    <% if (seasonInfo.allClubs !== null){ %>
+
+                    <% dsDoiBong.forEach(e => { %>
+                        <% var tmp = 0 %>
+                        
+                        <% for (var i = 0; i < seasonInfo.allClubs.length; i++ ) { %> 
+                            <% if( seasonInfo.allClubs[i].tenDoiBong === e.tenDoiBong)  { %>
+                                <option value="<%= e._id%>" selected><%= e.tenDoiBong %></option>
+                                <% tmp = 1 %>
+                                <% break %>
+                            <% } %>
+
+                           
+                            
+                         
+                        <% } %>
+                        <% if (tmp === 0) {%>
+                            <option value="<%= e._id%>" > <%= e.tenDoiBong%></option>
+                        <%}%>  
+                        
+                     
+                        <%})%>    
+                        <%} else {%>
+                            <% for (var i = 0; i < dsDoiBong.length; i++ ) { %> 
+                                <option value="<%= dsDoiBong[i]._id%>" > <%= dsDoiBong[i].tenDoiBong%></option>
+                            <% } %>
+                            <% } %>
+                    </select>
+                </div>
+            </div>
+
+            <div class="row form-group">
+                <div class="col-12 col-md-12">
+                    <label for="cover" class=" form-control-label">Hình ảnh</label>
+                    <div></div>
+                    <% if(edit=="true") { %>
+                    <div class="file-loading">
+                        <input id="cover" name="cover" type="file" multiple>
+                    </div>
+                    <% } else {%>
+                    <img src="../../public/assets/img/season/<%= seasonInfo.cover %>" alt="<%= seasonInfo.cover %>">
+                    <%}%>
+                </div>
+            </div>
+            
+                <input type="hidden" id="imgPath" name="imgPath" value="<%= seasonInfo.cover %>">
+                    </form>
+                </div>
+
+            </div>
+            <div class="card-footer">
+                <% if(edit=="true") { %>
+                <button type="submit" form="registerForm" class="btn btn-success btn-sm">
+                    <i class="fa fa-check"></i> Cập nhật
+                </button>
+                <button type="button" class="btn btn-danger btn-sm"
+                    onclick="location.href='/season/info/<%=seasonInfo.idMuaGiai%>&true';">
+                    <i class="fa fa-ban"></i> Mặc định
+                </button>
+                
+                <%}%>
+            </div>
+            
+        </div>
+    </div>
+</div>

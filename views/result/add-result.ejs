@@ -1,0 +1,137 @@
+<div class=" col-lg-12  ">
+
+    <div class=" card ">
+        <div class="card-header">
+            <strong class="card-title">
+
+                <!-- filter -->
+                <div class="row align-items-center justify-content-center">
+                    <div class="col pt-3">
+                        <form action="/result/add-result/<%=idSeason%>" method="GET" id="frmvongdau">
+                        <div class="form-group">
+                            <select id="vong" class="form-control" name="vong">
+                                <% for(var i = 1; i <= DsVong; i++){ %> 
+                                    <% if(i === vonghientai) { %> 
+                                        <option value="<%=i%>" selected>Vòng <%=i%></option>
+                                    <% } else { %> 
+                                        <option value="<%=i%>">Vòng <%=i%></option>
+                                    <%}%> 
+                                <%}%>
+                            </select>
+                        </div>
+                    </form>
+                    </div>
+                    <div class="col pt-3">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" form="frmvongdau" class="btn btn-primary btn-block"><i class="fas fa-filter"></i>
+                            Xem </button>
+                    </div>
+                </div> <!-- end filter-->
+            </strong>
+        </div>
+
+        <div class="card-body">
+            <table class="table" id="bangketqua">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col"><i>Đội nhà</th>
+                        <th scope="col"><i>Đội khách</th>
+                        <th scope="col"><i class="fa fa-check-square fa-flag-checkered"></i></th>
+                        <th scope="col"><i class="fa fa-file fa-file-red"></th>
+                        <th scope="col"><i class="fa fa-file fa-file-yellow"></th>
+                        <th scope="col"><i class="fa fa-pen "></i></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(let i=0; i<trandaus.length ; i++){%>
+                    <tr>
+                            <!-- style="visibility:hidden"style="visibility:hidden" -->
+                        <td style="max-width: 25px; overflow: hidden;text-overflow: ellipsis;white-space: nowrap;visibility: hidden"><%= trandaus[i]._id%></td>
+                        <td><strong><%= trandaus[i].doiNha.tenDoiBong%></strong></td>
+                        <td><strong><%= trandaus[i].doiKhach.tenDoiBong%></strong></td>
+                        <% if ( typeof(trandaus[i].banThangDoiNha) === 'undefied') {%> 
+                            <td>  -  </td>
+                        <%} else {%>
+                            <td><strong><%= trandaus[i].banThangDoiNha %> - <%= trandaus[i].banThangDoiKhach %></strong></td>
+                        <%}%>
+                        <td><strong><%= trandaus[i].theDoDoiNha%> - <%=trandaus[i].theDoDoiKhach%></strong></td>
+                        <td><strong><%= trandaus[i].theVangDoiNha%> - <%=trandaus[i].theVangDoiKhach%></strong></td>
+                        <td>
+                            <button id="<%=i%>" type="button" class="btn btn-success" data-toggle="modal" data-target="#largeModal">
+                                Cập nhật
+                            </button>
+                        </td>
+                    </tr>
+                    <%}%>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="largeModal" tabindex="-1" role="dialog" aria-labelledby="largeModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="largeModalLabel">Cập nhật thông số trận đấu</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="/result/add-result/<%=vonghientai%>&<%=idSeason%>" method="POST" id="frmUpdate">
+                        <input type="hidden" id="trandau" name="trandau" value="">
+                        <div class="info-result">
+                            <div class="side-side">
+                                <div>Home</div>
+                                <div class="component-side">
+                                    Số bàn thắng
+                                    <div>
+                                        <input type="number" name="banthanghome" id="banthanghome" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="component-side">Số thẻ vàng
+                                    <div>
+                                        <input type="number" name="thevanghome" id="thevanghome" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="component-side">Số thẻ đỏ
+                                    <div>
+                                        <input type="number" name="thedohome" id="thedohome" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="side-side">
+                                <div>Away</div>
+                                <div class="component-side">
+                                    Số bàn thắng
+                                    <div>
+                                        <input type="number" name="banthangaway" id="banthangaway" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="component-side">Số thẻ vàng
+                                    <div>
+                                        <input type="number" name="thevangaway" id="thevangaway" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="component-side">Số thẻ đỏ
+                                    <div>
+                                        <input type="number" name="thedoaway" id="thedoaway" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" form="frmUpdate" class="btn btn-primary">Confirm</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->

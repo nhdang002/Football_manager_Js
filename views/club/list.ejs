@@ -1,0 +1,14 @@
+
+<% for(var i = 0; i < danhsachdoibong.length; i++) { %>
+<div class="col-sm-6 col-lg-3">
+    <div class="card shadow-lg">
+        <div class="card-body">
+          <h5 class="card-title" style="text-align: center"><%=danhsachdoibong[i].tenDoiBong%></h5>
+          <img class="rounded-circle logo-team" src="../../public/assets/img/logo/<%=danhsachdoibong[i].logo%>" alt="image">
+          <p style="text-align: center"><%=danhsachdoibong[i].svd%></p>
+          <a href="/club/info/<%=danhsachdoibong[i]._id%>&false&<%=idSeason%>" class="btn btn-primary col-sm-12">Profile</a>
+        </div>
+
+      </div>
+</div>
+<% } %>

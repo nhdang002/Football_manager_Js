@@ -1,0 +1,35 @@
+<div class="animated fadeIn">
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong class="card-title">Top ghi bàn</strong>
+                </div>
+                <div class="card-body">
+                    <table id="bootstrap-data-table-export" class="table table-striped table-bordered">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th>TT</th>
+                                <th><i class="fa fa-running"></i> Cầu thủ</th>
+                                <th><i class="fa fa-users"></i> Đội bóng</th>
+                                <th><i class="fa fa-futbol"></i> Số bàn</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for(var i = 0; i < listPlayer.length; i++) { %> 
+                            <tr>
+                                <td><%= i + 1 %></td>
+                                <td><strong><%= listPlayer[i].idCauThu.tenCauThu %></strong></td>
+                                <td><%= listPlayer[i].idCauThu.tenDoiBong %></td>
+                                <td><strong><%= listPlayer[i].soBanThang %></strong></td>
+                            </tr>
+                            <%} %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
